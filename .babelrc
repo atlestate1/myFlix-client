@@ -1,6 +1,6 @@
 {
-    "presents": [
-        "@babel/present-react"
+    "presets": [
+        "@babel/preset-react"
     ],
     "plugins": [
         "@babel/plugin-proposal-class-properties"
