@@ -2,14 +2,9 @@ import React from 'react';
 
 export class MovieCard extends React.Component {
     render() {
-        const { movies } = this.props;
+        const { movie, onMovieClick } = this.props;
 
-        if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+        return <div className="movie-card" onClick={() => { onMovieClick(movie); }}>{movie.Title}</div>;
 
-        return (
-            <div className="movie-card">
-                {movies.map(movie => <MovieCard key={movie._id} movie={movie} />)}
-            </div>
-        );
     }
 }
