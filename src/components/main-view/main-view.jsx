@@ -10,15 +10,15 @@ export class MainView extends React.Component {
             movies: [
                 {
                     _id: 1, Title: 'Inception', Description: 'An action film about a thief who has the ability to enter peoples dreams and steal their secrets from their subconscious.',
-                    Genre: 'Action', Director: 'Christopher Nolan', ImagePath: '.img/inception.jpg'
+                    Genre: 'Action', Director: 'Christopher Nolan', ImagePath: 'https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_.jpg'
                 },
                 {
                     _id: 2, Title: 'The Shawshank Redemption', Description: 'A film about a man wrongfully convicted of killing his wife and her lover and his tough time in prison.',
-                    Genre: 'Drama', Director: 'Frank Darabont', ImagePath: 'img/shawshank.jpg'
+                    Genre: 'Drama', Director: 'Frank Darabont', ImagePath: 'https://m.media-amazon.com/images/I/519NBNHX5BL._SY445_.jpg'
                 },
                 {
                     _id: 3, Title: 'Gladiatior', Description: 'The story of a once-powerful general forced to become a common gladiator.',
-                    Genre: 'Action', Director: 'Ridley Scott', ImagePath: 'img/gladiator.jpg'
+                    Genre: 'Action', Director: 'Ridley Scott', ImagePath: 'https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg'
                 }
             ],
             selectedMovie: null

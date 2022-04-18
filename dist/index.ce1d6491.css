@@ -14,4 +14,9 @@ button, .button {
   transition: opacity .2s;
 }
 
+img {
+  width: 200px;
+  height: 300px;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */
