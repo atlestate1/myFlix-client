@@ -21864,20 +21864,26 @@ class MainView extends _reactDefault.default.Component {
                 {
                     _id: 1,
                     Title: 'Inception',
-                    Description1: '',
-                    ImagePath: ''
+                    Description: 'An action film about a thief who has the ability to enter peoples dreams and steal their secrets from their subconscious.',
+                    Genre: 'Action',
+                    Director: 'Christopher Nolan',
+                    ImagePath: '.img/inception.jpg'
                 },
                 {
                     _id: 2,
                     Title: 'The Shawshank Redemption',
-                    Description2: '',
-                    ImagePath: ''
+                    Description: 'A film about a man wrongfully convicted of killing his wife and her lover and his tough time in prison.',
+                    Genre: 'Drama',
+                    Director: 'Frank Darabont',
+                    ImagePath: 'img/shawshank.jpg'
                 },
                 {
                     _id: 3,
                     Title: 'Gladiatior',
-                    Descrption3: '',
-                    ImagePath: ''
+                    Description: 'The story of a once-powerful general forced to become a common gladiator.',
+                    Genre: 'Action',
+                    Director: 'Ridley Scott',
+                    ImagePath: 'img/gladiator.jpg'
                 }
             ],
             selectedMovie: null
@@ -22130,7 +22136,19 @@ class MovieView extends _reactDefault.default.Component {
             className: "label"
         }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value"
-        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-genre"
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label"
+        }, "Genre: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value"
+        }, movie.Genre)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-director"
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label"
+        }, "Director: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value"
+        }, movie.Director)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
             onClick: ()=>{
                 onBackClick(null);
             }

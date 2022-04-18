@@ -3,3 +3,16 @@ $color: steelblue;
 .my-flix {
   color: $color;
 }
+
+button,
+.button {
+  border: none;
+  font-family: inherit;
+  background-color: steelblue;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  border-bottom: 2px solid rgba (0, 0, 0, 0.3);
+  transition: 0.2s opacity;
+}

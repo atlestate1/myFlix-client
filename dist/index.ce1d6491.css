@@ -2,4 +2,16 @@
   color: #4682b4;
 }
 
+button, .button {
+  color: #fff;
+  border: none;
+  border-bottom: 2px solid rgba 0, 0, 0, .3;
+  background-color: #4682b4;
+  border-radius: 3px;
+  padding: 10px;
+  font-family: inherit;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */
