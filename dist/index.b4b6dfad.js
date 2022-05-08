@@ -21879,7 +21879,7 @@ class MainView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-        _axiosDefault.default.get('https://movieapi-databasen.herokuapp.com/movies').then((response)=>{
+        _axiosDefault.default.get('https://movieapi-database.herokuapp.com/movies').then((response)=>{
             this.setState({
                 movies: response.data
             });
@@ -23661,10 +23661,8 @@ class MovieView extends _reactDefault.default.Component {
     componentDidMount() {
         document.addEventListener('keypress', this.keypressCallback);
     }
-    componentDidMount() {
-        document.addEventListener('keypress', (event)=>{
-            console.log(event.key);
-        });
+    componentWillUnmount() {
+        document.removeEventListener('keypress', this.keypressCallback);
     }
     render() {
         const { movie , onBackClick  } = this.props;
