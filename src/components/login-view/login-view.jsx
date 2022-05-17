@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import MainView from "../main-view/main-view";
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [submitClick, setSubmitClick] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(username, password);
+        console.log(props.username, password);
         /* Send a request to the server for authentication */
         /* then call props.onLoggedIn(username) */
         props.onLoggedIn(username);
+        setSubmitClick(true)
     };
 
     const handleRegister = (e) => {
@@ -18,7 +21,11 @@ export function LoginView(props) {
         props.onRegister(true)
     }
 
-
+    if (submitClick) {
+        return (
+            <MainView></MainView>
+        )
+    }
     return (
         <form>
             <label>

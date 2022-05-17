@@ -13,8 +13,11 @@ export class MainView extends React.Component {
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
+            registered: false
         };
+        this.onLoggedIn = this.onLoggedIn.bind(this)
+        this.onRegister = this.onRegister.bind(this)
     }
 
     componentDidMount() {
@@ -41,25 +44,25 @@ export class MainView extends React.Component {
 
     onLoggedIn(user) {
         this.setState({
-            user
+            user: user
         });
     }
 
     onRegister(registered) {
         this.setState({
-            registered,
+            registered: registered
         });
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, registered } = this.state;
 
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details
         are passed as a prop to the LoginView.*/
 
-        if (!user) return <LoginView />;
+        if (!registered) return <RegistrationView onRegister={this.onRegister} />;
 
-        if (registered) return <RegistrationView />;
+        if (!user) return <LoginView onLoggedIn={this.onLoggedIn} />;
 
         if (movies.length === 0) return <div className="main-view" />;
 
