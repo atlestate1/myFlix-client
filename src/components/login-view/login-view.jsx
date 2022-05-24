@@ -18,7 +18,7 @@ export function LoginView(props) {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        props.onRegister(true)
+        props.onRegister(false)
     }
 
     if (submitClick) {
@@ -48,4 +48,5 @@ LoginView.propTypes = {
         password: PropTypes.string.isRequired,
     }),
     onLoggedIn: PropTypes.func.isRequired,
+    onRegister: PropTypes.func.isRequired
 };

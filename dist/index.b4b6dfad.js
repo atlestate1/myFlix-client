@@ -21879,7 +21879,7 @@ class MainView extends _reactDefault.default.Component {
             movies: [],
             selectedMovie: null,
             user: null,
-            registered: false
+            registered: true
         };
         this.onLoggedIn = this.onLoggedIn.bind(this);
         this.onRegister = this.onRegister.bind(this);
@@ -21916,7 +21916,8 @@ class MainView extends _reactDefault.default.Component {
             onRegister: this.onRegister
         });
         if (!user) return /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
-            onLoggedIn: this.onLoggedIn
+            onLoggedIn: this.onLoggedIn,
+            onRegister: this.onRegister
         });
         if (movies.length === 0) return /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "main-view"
@@ -24412,7 +24413,7 @@ function LoginView(props) {
     };
     const handleRegister = (e)=>{
         e.preventDefault();
-        props.onRegister(true);
+        props.onRegister(false);
     };
     if (submitClick) return /*#__PURE__*/ _reactDefault.default.createElement(_mainViewDefault.default, null);
     return /*#__PURE__*/ _reactDefault.default.createElement("form", null, /*#__PURE__*/ _reactDefault.default.createElement("label", null, "username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -24438,7 +24439,8 @@ LoginView.propTypes = {
         username: _propTypesDefault.default.string.isRequired,
         password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired
+    onLoggedIn: _propTypesDefault.default.func.isRequired,
+    onRegister: _propTypesDefault.default.func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "LoginView");
@@ -24448,7 +24450,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../main-view/main-view":"4gflv"}],"bwuIu":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","../main-view/main-view":"4gflv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24525,7 +24527,7 @@ class MovieView extends _reactDefault.default.Component {
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-poster"
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
-            src: movie.ImagePath
+            src: "../../img/" + movie.ImagePath
         })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-title"
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
@@ -24544,13 +24546,13 @@ class MovieView extends _reactDefault.default.Component {
             className: "label"
         }, "Genre: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value"
-        }, movie.Genre)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+        }, movie.Genre.Name)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-director"
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label"
         }, "Director: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value"
-        }, movie.Director)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        }, movie.Director.Name)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
             onClick: ()=>{
                 onBackClick(null);
             }
