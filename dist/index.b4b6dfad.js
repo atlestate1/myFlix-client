@@ -21866,6 +21866,8 @@ parcelHelpers.export(exports, "MainView", ()=>MainView
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _registrationView = require("../registration-view/registration-view");
@@ -21945,7 +21947,7 @@ class MainView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","../registration-view/registration-view":"3U8r7","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","../registration-view/registration-view":"3U8r7","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -24430,7 +24432,9 @@ function LoginView(props) {
     }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
         type: "submit",
         onClick: handleRegister
-    }, "New Users"));
+    }, "New Users"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        type: "submit"
+    }, "Unregister"));
 }
 _s(LoginView, "9SclRUQ67txmCAyMGHFlmv13DqE=");
 _c = LoginView;
@@ -24510,6 +24514,9 @@ parcelHelpers.export(exports, "MovieView", ()=>MovieView
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _img = require("../../img");
 class MovieView extends _reactDefault.default.Component {
     keypressCallback(event) {
         console.log(event.key);
@@ -24527,7 +24534,7 @@ class MovieView extends _reactDefault.default.Component {
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-poster"
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
-            src: "../../img/" + movie.ImagePath
+            src: _img.images[movie.ImagePath]
         })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-title"
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
@@ -24565,6 +24572,88 @@ class MovieView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["kn9T2","1wDOc","d8Dch"], "d8Dch", "parcelRequire028f")
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../img":"WeKuV","prop-types":"7wKI2"}],"WeKuV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "images", ()=>images
+);
+const images = {
+    "waitingtoexhale.png": require("./waitingtoexhale.png"),
+    "boomerang.png": require("./boomerang.png"),
+    "poeticjustice.png": require("./poeticjustice.png"),
+    "havplenty.png": require("./havplenty.png"),
+    "equalizer.png": require("./equalizer.png"),
+    "boyzinthehood.png": require("./boyzinthehood.png"),
+    "lovejones.png": require("./lovejones.png"),
+    "bestman.png": require("./bestman.png"),
+    "setitoff.png": require("./setitoff.png"),
+    "soulfood.png": require("./soulfood.png")
+};
+
+},{"./waitingtoexhale.png":"2WzpM","./boomerang.png":"69kSB","./poeticjustice.png":"fLuhG","./havplenty.png":"bjsin","./equalizer.png":"g8wyI","./boyzinthehood.png":"ftI2K","./lovejones.png":"bIUHG","./bestman.png":"aiECq","./setitoff.png":"fkFzP","./soulfood.png":"5wnol","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2WzpM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "waitingtoexhale.41965e77.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"69kSB":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "boomerang.c568de0b.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"fLuhG":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "poeticjustice.08734c4e.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"bjsin":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "havplenty.ba0620b4.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"g8wyI":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "equalizer.e8a2ff2f.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"ftI2K":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "boyzinthehood.4fddf1b3.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"bIUHG":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "lovejones.f124a5d3.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"aiECq":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "bestman.01a6b16c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"fkFzP":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "setitoff.a806e956.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"5wnol":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "soulfood.36e02383.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lJZlQ":[function() {},{}]},["kn9T2","1wDOc","d8Dch"], "d8Dch", "parcelRequire028f")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
