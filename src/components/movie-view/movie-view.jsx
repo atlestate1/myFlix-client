@@ -62,5 +62,5 @@ MovieView.propTypes = {
             Birthday: PropTypes.string,
         }),
     }).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+    onBackClick: PropTypes.func.isRequired
 };
