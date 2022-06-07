@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form, Button, Card, CardGroup, Container, Row, Col } from 'react-bootstrap';
 
 export function RegistrationView(props) {
     const [username, setUsername] = useState('');
@@ -18,22 +19,23 @@ export function RegistrationView(props) {
             <label>
                 username:
                 <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </label>
+            </label><br></br>
             <label>
                 password:
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
+            </label><br></br>
             <label>
                 email:
                 <input type="email" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
-            </label>
+            </label><br></br>
             <label>
                 birthday:
                 <input type="date" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
+            </label><br></br>
             <button type="submit" onClick={handleSubmit}>
                 Submit
             </button>
+            <button onClick={() => { onBackClick(null); }}>Back</button>
         </form>
     );
 }

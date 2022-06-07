@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainView from "../main-view/main-view";
+<<<<<<< Updated upstream
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+=======
+import { Form, FormGroup, Button, Row, Col, Container } from 'react-bootstrap';
+
+>>>>>>> Stashed changes
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -29,6 +34,7 @@ export function LoginView(props) {
         )
     }
     return (
+<<<<<<< Updated upstream
         <Form>
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
@@ -43,6 +49,21 @@ export function LoginView(props) {
                 Submit
             </Button>
         </Form>
+=======
+        <form>
+            <label>
+                username:
+                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+            </label><br></br>
+            <label>
+                password:
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+            </label><br></br>
+            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="submit" onClick={handleRegister}>New Users</button>
+            <button type="submit">Unregister</button>
+        </form>
+>>>>>>> Stashed changes
     );
 }
 
