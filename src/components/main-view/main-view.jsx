@@ -84,7 +84,6 @@ export class MainView extends React.Component {
                     ))
                 }
             </Row>
-<<<<<<< Updated upstream
         ); return (
             <Row className="main-view justify-content-md-center">
                 {selectedMovie
@@ -100,8 +99,6 @@ export class MainView extends React.Component {
                     ))
                 }
             </Row>
-=======
->>>>>>> Stashed changes
         );
 
     }
