@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { images } from '../../img';
 
 export class MovieView extends React.Component {
 
@@ -21,7 +23,7 @@ export class MovieView extends React.Component {
         return (
             <div className="movie-view">
                 <div className="movie-poster">
-                    <img src={"../../img/" + movie.ImagePath} />
+                    <img src={images[movie.ImagePath]} />
                 </div>
                 <div className="movie-title">
                     <span className="label">Title: </span>
@@ -45,3 +47,20 @@ export class MovieView extends React.Component {
         );
     }
 }
+
+MovieView.propTypes = {
+    movie: PropTypes.shape({
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string,
+        }),
+        Director: PropTypes.shape({
+            Name: PropTypes.string,
+            Bio: PropTypes.string,
+            Birthday: PropTypes.string,
+        }),
+    }).isRequired,
+    onBackClick: PropTypes.func.isRequired
+};

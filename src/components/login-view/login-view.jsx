@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainView from "../main-view/main-view";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { Form, FormGroup, Button, Row, Col, Container } from 'react-bootstrap';
 
 export function LoginView(props) {
