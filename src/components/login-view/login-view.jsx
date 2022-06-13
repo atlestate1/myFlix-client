@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainView from "../main-view/main-view";
-import { Form, FormGroup, Button, Row, Col, Container, Card, CardGroup } from 'react-bootstrap';
+import { Form, Button, Row, Col, Container, Card, CardGroup } from 'react-bootstrap';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -28,38 +28,36 @@ export function LoginView(props) {
         )
     }
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <CardGroup>
-                        <Card>
-                            <Card.Body>
-                                <Card.Title>Welcome To MyFlix Premier Movie App!</Card.Title>
-                                <Form>
-                                    <Form.Group controlId="formUsername">
-                                        <Form.Label>Username:</Form.Label>
-                                        <Form.Control type="text" onChange={e => setUsername(e.target.value)}
-                                            placeholder="Username" />
-                                    </Form.Group>
-                                    <Form.Group controlId="formPassword">
-                                        <Form.Label>Password:</Form.Label>
-                                        <Form.Control type="password" onChange={e => setPassword(e.target.value)}
-                                            placeholder="Password" />
-                                    </Form.Group><br></br>
-                                    <Button variant="primary" type="submit" onClick={handleSubmit}>
-                                        Submit
-                                    </Button>
-                                    <Button variant="primary" type="submit" onClick={handleRegister}>
-                                        New Users
-                                    </Button>
-                                    <Button variant="primary" type="submit">Unregister</Button>
-                                </Form>
-                            </Card.Body>
-                        </Card>
-                    </CardGroup>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col>
+                <CardGroup>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Welcome To MyFlix Premier Movie App!</Card.Title>
+                            <Form>
+                                <Form.Group controlId="formUsername">
+                                    <Form.Label>Username:</Form.Label>
+                                    <Form.Control type="text" onChange={e => setUsername(e.target.value)}
+                                        placeholder="Username" />
+                                </Form.Group>
+                                <Form.Group controlId="formPassword">
+                                    <Form.Label>Password:</Form.Label>
+                                    <Form.Control type="password" onChange={e => setPassword(e.target.value)}
+                                        placeholder="Password" />
+                                </Form.Group><br></br>
+                                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                                    Submit
+                                </Button>
+                                <Button variant="primary" type="submit" onClick={handleRegister}>
+                                    New Users
+                                </Button>
+                                <Button variant="primary" type="submit">Unregister</Button>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                </CardGroup>
+            </Col>
+        </Row>
     );
 }
 

@@ -23527,7 +23527,7 @@ function RegistrationView(props) {
         console.log(username, password, birthday, email);
         props.onRegister(true);
     };
-    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -23564,7 +23564,7 @@ function RegistrationView(props) {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit
-    }, "Submit"))))))));
+    }, "Submit")))))));
 }
 _s(RegistrationView, "MWj3HdQRSj+7T3fdvwpRB3t7hec=");
 _c = RegistrationView;
@@ -26648,7 +26648,7 @@ function LoginView(props) {
         props.onRegister(false);
     };
     if (submitClick) return /*#__PURE__*/ _reactDefault.default.createElement(_mainViewDefault.default, null);
-    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, null, "Welcome To MyFlix Premier Movie App!"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+    return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, null, "Welcome To MyFlix Premier Movie App!"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -26673,7 +26673,7 @@ function LoginView(props) {
     }, "New Users"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit"
-    }, "Unregister"))))))));
+    }, "Unregister")))))));
 }
 _s(LoginView, "9SclRUQ67txmCAyMGHFlmv13DqE=");
 _c = LoginView;
