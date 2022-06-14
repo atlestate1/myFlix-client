@@ -21893,13 +21893,13 @@ class MainView extends _reactDefault.default.Component {
         this.onRegister = this.onRegister.bind(this);
     }
     componentDidMount() {
-        _axiosDefault.default.get('https://movieapi-database.herokuapp.com/movies').then((response)=>{
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
             this.setState({
-                movies: response.data
+                user: localStorage.getItem('user')
             });
-        }).catch((error)=>{
-            console.log(error);
-        });
+            this.getMovies(accessToken);
+        }
     }
     setSelectedMovie(newSelectedMovie) {
         this.setState({
@@ -21907,9 +21907,34 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     /*When a user successfully logs in, this function updates the user property in state to that
-  particular */ onLoggedIn(user) {
+  particular */ getMovies(token) {
+        _axiosDefault.default.get('https://movieapi-database.herokuapp.com/movies', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            // Assign the result to the state
+            this.setState({
+                movies: response.data
+            });
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    onLoggedIn(authData) {
+        console.log(authData);
         this.setState({
-            user: user
+            user: authData.user.Username
+        });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+    }
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
         });
     }
     onRegister(registered) {
@@ -21930,6 +21955,11 @@ class MainView extends _reactDefault.default.Component {
         if (movies.length === 0) return /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "main-view"
         });
+        /*#__PURE__*/ _reactDefault.default.createElement("button", {
+            onClick: ()=>{
+                this.onLoggedOut();
+            }
+        }, "Logout");
         return /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-left"
         }, selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -23522,29 +23552,65 @@ function RegistrationView(props) {
     const [password, setPassword] = _react.useState('');
     const [birthday, setBirthday] = _react.useState('');
     const [email, setEmail] = _react.useState('');
-    const handleSubmit = (e)=>{
+    const [usernameErr, setUsernameErr] = _react.useState('');
+    const [passwordErr, setPasswordErr] = _react.useState('');
+    const [birthdayErr, setBirthdayErr] = _react.useState('');
+    const [emailErr, setEmailErr] = _react.useState('');
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr('Username Required');
+            isReq = false;
+        } else if (username.length < 2) {
+            setUsernameErr('Username must be 2 characters long');
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr('Password Required');
+            isReq = false;
+        } else if (password.length < 6) {
+            setPassword('Password must be 6 characters long');
+            isReq = false;
+        }
+        if (!email) {
+            setEmailErr("Add Email");
+            isReq = false;
+        } else if (email.indexOf("@") === -1) {
+            setEmail("Email must be a valid email address");
+            isReq = false;
+        }
+        return isReq;
+    };
+    const handleRegister = (e)=>{
         e.preventDefault();
-        console.log(username, password, birthday, email);
-        props.onRegister(true);
+        const isReq = validate();
+        if (isReq) /* Send request to the server for authentication */ axios.post('https://movieapi-database.herokuapp.com/users', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then((response)=>{
+            const data = response.data;
+            props.onLoggedIn(data);
+        }).catch((e)=>{
+            console.log('no such user');
+        });
     };
     return /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
+        placeholder: "Enter username",
+        value: username,
         onChange: (e)=>setUsername(e.target.value)
-        ,
-        required: true,
-        placeholder: "Username"
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+    }), usernameErr && /*#__PURE__*/ _reactDefault.default.createElement("p", null, usernameErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "password",
+        placeholder: "Password",
+        value: password,
         onChange: (e)=>setPassword(e.target.value)
-        ,
-        required: true,
-        minLength: "8",
-        placeholder: "Password must be at least 8 characters"
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+    }), passwordErr && /*#__PURE__*/ _reactDefault.default.createElement("p", null, passwordErr)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
         type: "email",
@@ -23566,7 +23632,7 @@ function RegistrationView(props) {
         onClick: handleSubmit
     }, "Submit")))))));
 }
-_s(RegistrationView, "MWj3HdQRSj+7T3fdvwpRB3t7hec=");
+_s(RegistrationView, "3DuOunUzHuObphn7IMzurbxQIyg=");
 _c = RegistrationView;
 RegistrationView.propTypes = {
     onRegister: _propTypesDefault.default.func.isRequired
@@ -26631,6 +26697,8 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _mainView = require("../main-view/main-view");
 var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
 function LoginView(props) {
     _s();
@@ -26638,10 +26706,15 @@ function LoginView(props) {
     const [password, setPassword] = _react.useState('');
     const [submitClick, setSubmitClick] = _react.useState(false);
     const handleSubmit = (e)=>{
-        e.preventDefault();
-        console.log(props.username, password);
-        /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onLoggedIn(username);
-        setSubmitClick(true);
+        _axiosDefault.default.post('https://movieapi-database.herokuapp.com/login', {
+            Username: username,
+            Password: password
+        }).then((response)=>{
+            const data = response.data;
+            props.onLoggedIn(data);
+        }).catch((e)=>{
+            console.log('no such user');
+        });
     };
     const handleRegister = (e)=>{
         e.preventDefault();
@@ -26693,7 +26766,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","../main-view/main-view":"4gflv","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","../main-view/main-view":"4gflv","react-bootstrap":"3AD9A","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainView from "../main-view/main-view";
 import { Form, Button, Row, Col, Container, Card, CardGroup } from 'react-bootstrap';
+import axios from 'axios';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -9,13 +10,19 @@ export function LoginView(props) {
     const [submitClick, setSubmitClick] = useState(false)
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(props.username, password);
-        /* Send a request to the server for authentication */
-        /* then call props.onLoggedIn(username) */
-        props.onLoggedIn(username);
-        setSubmitClick(true)
+        axios.post('https://movieapi-database.herokuapp.com/login', {
+            Username: username,
+            Password: password
+        })
+            .then(response => {
+                const data = response.data;
+                props.onLoggedIn(data);
+            })
+            .catch(e => {
+                console.log('no such user')
+            });
     };
+
 
     const handleRegister = (e) => {
         e.preventDefault()
