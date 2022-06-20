@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export function RegistrationView(props) {
     const [username, setUsername] = useState('');
@@ -94,9 +96,11 @@ export function RegistrationView(props) {
                                         required
                                         placeholder="Birthday" />
                                 </Form.Group><br></br>
-                                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                                    Submit
+                                <Button variant="primary" type="submit" onClick={handleRegister}>Submit
                                 </Button>
+                                <Link to="/">
+                                    <Button variant="primary">Back</Button>
+                                </Link>
                             </Form>
                         </Card.Body>
                     </Card>

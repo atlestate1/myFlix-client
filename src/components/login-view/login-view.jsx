@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MainView from "../main-view/main-view";
 import { Form, Button, Row, Col, Container, Card, CardGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export function LoginView(props) {
@@ -52,12 +53,12 @@ export function LoginView(props) {
                                     <Form.Control type="password" onChange={e => setPassword(e.target.value)}
                                         placeholder="Password" />
                                 </Form.Group><br></br>
-                                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                                    Submit
-                                </Button>
-                                <Button variant="primary" type="submit" onClick={handleRegister}>
-                                    New Users
-                                </Button>
+                                <Link to="/movies/:movieId">
+                                    <Button variant="primary">Submit</Button>
+                                </Link>
+                                <Link to="/register">
+                                    <Button variant="primary">New Users</Button>
+                                </Link>
                                 <Button variant="primary" type="submit">Unregister</Button>
                             </Form>
                         </Card.Body>

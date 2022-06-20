@@ -81,16 +81,6 @@ export class MainView extends React.Component {
     render() {
         const { movies, user } = this.state;
 
-        /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details
-        are passed as a prop to the LoginView.*/
-
-        if (!registered) return <RegistrationView onRegister={this.onRegister} />;
-
-        if (!user) return <LoginView onLoggedIn={this.onLoggedIn} onRegister={this.onRegister} />;
-
-        if (movies.length === 0) return <div className="main-view" />;
-        <button onClick={() => { this.onLoggedOut() }}>Logout</button>
-
         return (
             <Router>
                 <Row className="main-view justify-content-md-center">
