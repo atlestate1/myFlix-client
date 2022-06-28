@@ -11,9 +11,10 @@ export function LoginView(props) {
     const [submitClick, setSubmitClick] = useState(false)
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         axios.post('https://movieapi-database.herokuapp.com/login', {
-            Username: username,
-            Password: password
+            username: username,
+            password: password
         })
             .then(response => {
                 const data = response.data;
@@ -24,17 +25,6 @@ export function LoginView(props) {
             });
     };
 
-
-    const handleRegister = (e) => {
-        e.preventDefault()
-        props.onRegister(false)
-    }
-
-    if (submitClick) {
-        return (
-            <MainView></MainView>
-        )
-    }
     return (
         <Row>
             <Col>
@@ -42,7 +32,7 @@ export function LoginView(props) {
                     <Card>
                         <Card.Body>
                             <Card.Title>Welcome To MyFlix Premier Movie App!</Card.Title>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formUsername">
                                     <Form.Label>Username:</Form.Label>
                                     <Form.Control type="text" onChange={e => setUsername(e.target.value)}
@@ -53,13 +43,8 @@ export function LoginView(props) {
                                     <Form.Control type="password" onChange={e => setPassword(e.target.value)}
                                         placeholder="Password" />
                                 </Form.Group><br></br>
-                                <Link to="/movies/:movieId">
-                                    <Button variant="primary">Submit</Button>
-                                </Link>
-                                <Link to="/register">
-                                    <Button variant="primary">New Users</Button>
-                                </Link>
-                                <Button variant="primary" type="submit">Unregister</Button>
+
+                                <Button variant="primary" type="submit">Submit</Button>
                             </Form>
                         </Card.Body>
                     </Card>
@@ -67,13 +52,4 @@ export function LoginView(props) {
             </Col>
         </Row>
     );
-}
-
-LoginView.propTypes = {
-    user: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-    }),
-    onLoggedIn: PropTypes.func.isRequired,
-    onRegister: PropTypes.func.isRequired
 };

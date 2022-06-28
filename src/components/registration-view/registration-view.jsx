@@ -47,16 +47,17 @@ export function RegistrationView(props) {
         if (isReq) {
             /* Send request to the server for authentication */
             axios.post('https://movieapi-database.herokuapp.com/users', {
-                Username: username,
-                Password: password,
-                Email: email,
-                Birthday: birthday
+                username: username,
+                password: password,
+                email: email,
+                birthday: birthday
 
             })
                 .then(response => {
                     const data = response.data;
                     console.log(data);
                     window.open('/', '_self'); //the second argument '_self is necessary so that the page will open in the current tab //
+                    alert("You have successfully registered!")
                     props.onLoggedIn(data);
                 })
                 .catch(e => {
@@ -71,7 +72,7 @@ export function RegistrationView(props) {
                 <CardGroup>
                     <Card>
                         <Card.Body>
-                            <Form>
+                            <Form onSubmit={handleRegister}>
                                 <Form.Group controlId="formUsername">
                                     <Form.Label>Username:</Form.Label>
                                     <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
@@ -96,8 +97,7 @@ export function RegistrationView(props) {
                                         required
                                         placeholder="Birthday" />
                                 </Form.Group><br></br>
-                                <Button variant="primary" type="submit" onClick={handleRegister}>Submit
-                                </Button>
+                                <Button variant="primary" type="submit">Submit</Button>
                                 <Link to="/">
                                     <Button variant="primary">Back</Button>
                                 </Link>
@@ -109,8 +109,4 @@ export function RegistrationView(props) {
         </Row>
 
     );
-}
-
-RegistrationView.propTypes = {
-    onRegister: PropTypes.func.isRequired,
 };
