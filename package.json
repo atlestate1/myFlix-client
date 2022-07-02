@@ -24,6 +24,7 @@
     "@parcel/transformer-raw": "^2.5.0",
     "axios": "^0.26.1",
     "parcel-plugin-clean-dist": "^0.0.6",
+    "posthtml-parser": "^0.11.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.4.0",

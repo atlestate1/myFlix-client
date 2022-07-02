@@ -8,7 +8,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 export function ProfileView(props) {
     const [user, setUser] = useState(props.user);
     const [movies, setMovies] = useState(props.movies);
-    const [favouriteMovies, setFavouriteMovies] = useState([]);
+    const [favoriteMovies, setFavoriteMovies] = useState([]);
     const currentUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
@@ -18,7 +18,7 @@ export function ProfileView(props) {
         })
             .then(response => {
                 setUser(response.data);
-                setFavouriteMovies(response.data.FavouriteMovies)
+                setFavoriteMovies(response.data.FavoriteMovies)
             })
             .catch(error => console.error(error))
     }
@@ -27,12 +27,37 @@ export function ProfileView(props) {
         getUser();
     }, [])
 
+    const updateUser = () => {
+        let token = localStorage.getItem('token');
+        let user = localStorage.getItem("user");
+        axios.put(`https://movieapi-database.herokuapp.com/users/${user}`, {
+            username: username,
+            email: email, //Email is a variable which holds the email
+            birthday: birthday,
+            password: password
+        },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            }).then((response) => {
+                alert('Your profile has been updated');
+                localStorage.setItem('user', response.data.username),
+                    console.log(response.data)
+            })
+            .catch(e => {
+                console.log('Error')
+            });
+    }
+
+
+
     const handleDelete = () => {
-        axios.delete(`https://movime-api.herokuapp.com/users/${currentUser}`, {
+        axios.delete(`https://movieapi-database.herokuapp.com/users/${currentUser}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(() => {
-                alert(`The account ${user.Username} was successfully deleted.`)
+                alert(`The account ${user.username} was successfully deleted.`)
                 localStorage.clear();
                 window.open('/register', '_self');
             }).
@@ -44,7 +69,7 @@ export function ProfileView(props) {
             <Row><h4>Your profile</h4></Row>
             <Row>
                 <Col className="label">Username:</Col>
-                <Col className="value">{user.Username}</Col>
+                <Col className="value">{user.username}</Col>
             </Row>
             <Row className="mt-3">
                 <Col className="label">Password:</Col>
@@ -52,22 +77,22 @@ export function ProfileView(props) {
             </Row>
             <Row className="mt-3">
                 <Col className="label">Email:</Col>
-                <Col className="value">{user.Email}</Col>
+                <Col className="value">{user.email}</Col>
             </Row>
             <Row className="mt-3">
                 <Col className="label">Birthday:</Col>
-                <Col className="value">{user.Birthday}</Col>
+                <Col className="value">{user.birthday}</Col>
             </Row>
-            <Row className="mt-5"><h4>Your favourite movies</h4></Row>
+            <Row className="mt-5"><h4>Your favorite movies</h4></Row>
             <Row className="mt-3">
-                <FavouriteMoviesView
+                <favoriteMovies
                     movies={movies}
-                    favouriteMovies={favouriteMovies}
+                    favoriteMovies={favoriteMovies}
                     currentUser={currentUser}
                     token={token} />
             </Row>
-            <UpdateView user={user} />
-            <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>Delete profile</Button>
+            <Button onClick={updateUser}>Update your profile</Button>
+            <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>Deactivate</Button>
         </Container>
     )
 }

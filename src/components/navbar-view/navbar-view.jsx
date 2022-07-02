@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export function NavbarView({ user }) {
     const onLoggedOut = () => {
@@ -36,9 +35,6 @@ export function NavbarView({ user }) {
                         )}
                         {!isAuth() && (
                             <Nav.Link href="/register">New Users</Nav.Link>
-                        )}
-                        {!isAuth() && (
-                            <Nav.Link href="/">Deactivate</Nav.Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>

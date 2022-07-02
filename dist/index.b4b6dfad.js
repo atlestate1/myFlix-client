@@ -28361,7 +28361,6 @@ parcelHelpers.export(exports, "NavbarView", ()=>NavbarView);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
 function NavbarView({ user  }) {
     const onLoggedOut = ()=>{
         localStorage.clear();
@@ -28396,9 +28395,7 @@ function NavbarView({ user  }) {
         href: "/"
     }, "Sign-In"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
         href: "/register"
-    }, "New Users"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
-        href: "/"
-    }, "Deactivate")))));
+    }, "New Users")))));
 }
 _c = NavbarView;
 var _c;
@@ -28409,7 +28406,7 @@ $RefreshReg$(_c, "NavbarView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3AD9A":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -34496,8 +34493,7 @@ MovieCard.propTypes = {
             Bio: (0, _propTypesDefault.default).string,
             Birthday: (0, _propTypesDefault.default).string
         })
-    }).isRequired,
-    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+    }).isRequired
 };
 
   $parcel$ReactRefreshHelpers$67b2.postlude(module);
@@ -34695,19 +34691,19 @@ class DirectorView extends (0, _reactDefault.default).Component {
             className: "label"
         }, "Director: "), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "value"
-        }, director.Director.Name)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+        }, director.Name)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
             className: "mt-3"
         }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "label"
         }, "Bio: "), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "value"
-        }, director.Director.Bio)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+        }, director.Bio)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
             className: "mt-3"
         }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "label"
         }, "Birth: "), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "value"
-        }, director.Director.Birth)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        }, director.Birth)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
             onClick: ()=>{
                 onBackClick(null);
             }
@@ -34718,7 +34714,7 @@ DirectorView.propTypes = {
     director: (0, _propTypesDefault.default).shape({
         Name: (0, _propTypesDefault.default).string.isRequired,
         Bio: (0, _propTypesDefault.default).string.isRequired,
-        Birth: (0, _propTypesDefault.default).string.isRequired,
+        Birthday: (0, _propTypesDefault.default).string.isRequired,
         Death: (0, _propTypesDefault.default).string
     }).isRequired
 };
@@ -34750,13 +34746,13 @@ class GenreView extends (0, _reactDefault.default).Component {
             className: "label"
         }, "Genre: "), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "value"
-        }, genre.Genre.Name)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+        }, genre.Name)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
             className: "mt-3"
         }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "label"
         }, "Description: "), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
             className: "value"
-        }, genre.Genre.Description)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        }, genre.Description)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
             onClick: ()=>{
                 onBackClick(null);
             }
@@ -34795,31 +34791,51 @@ var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
-    const [user, setUser] = (0, _react.useState)(props.user);
+    const [user1, setUser] = (0, _react.useState)(props.user);
     const [movies, setMovies] = (0, _react.useState)(props.movies);
-    const [favouriteMovies, setFavouriteMovies] = (0, _react.useState)([]);
+    const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
     const currentUser = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+    const token1 = localStorage.getItem("token");
     const getUser = ()=>{
         (0, _axiosDefault.default).get(`https://movieapi-database.herokuapp.com/users/${currentUser}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token1}`
             }
         }).then((response)=>{
             setUser(response.data);
-            setFavouriteMovies(response.data.FavouriteMovies);
+            setFavoriteMovies(response.data.FavoriteMovies);
         }).catch((error)=>console.error(error));
     };
     (0, _react.useEffect)(()=>{
         getUser();
     }, []);
-    const handleDelete = ()=>{
-        (0, _axiosDefault.default).delete(`https://movime-api.herokuapp.com/users/${currentUser}`, {
+    const updateUser = ()=>{
+        let token = localStorage.getItem("token");
+        let user = localStorage.getItem("user");
+        (0, _axiosDefault.default).put(`https://movieapi-database.herokuapp.com/users/${user}`, {
+            username: username,
+            email: email,
+            //Email is a variable which holds the email
+            birthday: birthday,
+            password: password
+        }, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: "Bearer " + token
+            }
+        }).then((response)=>{
+            alert("Your profile has been updated");
+            localStorage.setItem("user", response.data.username), console.log(response.data);
+        }).catch((e)=>{
+            console.log("Error");
+        });
+    };
+    const handleDelete = ()=>{
+        (0, _axiosDefault.default).delete(`https://movieapi-database.herokuapp.com/users/${currentUser}`, {
+            headers: {
+                Authorization: `Bearer ${token1}`
             }
         }).then(()=>{
-            alert(`The account ${user.Username} was successfully deleted.`);
+            alert(`The account ${user1.username} was successfully deleted.`);
             localStorage.clear();
             window.open("/register", "_self");
         }).catch((error)=>console.error(error));
@@ -34830,7 +34846,7 @@ function ProfileView(props) {
         className: "label"
     }, "Username:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
         className: "value"
-    }, user.Username)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+    }, user1.username)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
         className: "mt-3"
     }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
         className: "label"
@@ -34842,30 +34858,30 @@ function ProfileView(props) {
         className: "label"
     }, "Email:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
         className: "value"
-    }, user.Email)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+    }, user1.email)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
         className: "mt-3"
     }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
         className: "label"
     }, "Birthday:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Col), {
         className: "value"
-    }, user.Birthday)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+    }, user1.birthday)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
         className: "mt-5"
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement("h4", null, "Your favourite movies")), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement("h4", null, "Your favorite movies")), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Row), {
         className: "mt-3"
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement(FavouriteMoviesView, {
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement("favoriteMovies", {
         movies: movies,
-        favouriteMovies: favouriteMovies,
+        favoriteMovies: favoriteMovies,
         currentUser: currentUser,
-        token: token
-    })), /*#__PURE__*/ (0, _reactDefault.default).createElement(UpdateView, {
-        user: user
-    }), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        token: token1
+    })), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        onClick: updateUser
+    }, "Update your profile"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
         className: "d-block mt-5",
         variant: "danger",
         onClick: handleDelete
-    }, "Delete profile"));
+    }, "Deactivate"));
 }
-_s(ProfileView, "CGFG/jcYPprsUBxgiqn/Wyc4P84=");
+_s(ProfileView, "4XVWgEAJm8eH/OJpp/OH2S3aJ9o=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
